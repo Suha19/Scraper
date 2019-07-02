@@ -45,16 +45,16 @@
       <p>A breakdown of what the candidates are saying when they aren’t saying anything at all.</p>
     </div>
   </div>
-  {{!-- <div class="container-fluid article-container">
-
-    <div id="wrapper">
-      <div id="articles"></div>
-      <div id="comments"></div>
-      <div id="image"></div>
+  
+  {{#each Article}}
+  <div class="container-fluid article-container"> 
+    <div id="wrapper">      
+      <div id="articles">{{this.title}}</div>
+      <div id="comments">hi</div>
+      <div id="image"></div>    
     </div>
-
-  </div> --}}
-
+  </div>
+ {{/each}}
   <footer class="footer">
     <div class="container">
       <p>New York Times Fashion Scraper</p>

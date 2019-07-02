@@ -1,14 +1,12 @@
 
 
-// Routes
-// =============================================================
-module.exports = function(app) {
+var express = require('express');
+var router = express.Router();
 
-  // index route loads home
-  app.get("/", function(req, res) {
-    res.render("home")
-  });
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('home');
+});
+module.exports = router;
 
-
-};
 

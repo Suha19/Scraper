@@ -3,11 +3,11 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
-
 require("dotenv").config();
-
 var app = express();
 var exphbs = require("express-handlebars");
+var routes = require("./routes/html-routes");
+app.use(routes);
 
 // Sets up the Express app to handle data parsing
 // =============================================================
@@ -16,17 +16,11 @@ app.use(express.json());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
 // Static directory
 // =============================================================
 // Require all models
 var db = require("./models");
 var PORT = process.env.PORT || 5000;
-
-// Initialize Express
-var app = express();
-
-// Configure middleware
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
@@ -34,20 +28,13 @@ app.use(logger("dev"));
 app.use(express.urlencoded({
     extended: true
 }));
-app.use(express.json());
-// Make public a static folder
+
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/fashionArticles", {
     useNewUrlParser: true
 });
-
-// Routes
-
-app.get("/", function(req, res) {
-    res.render("home")
-  });
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function (req, res) {
